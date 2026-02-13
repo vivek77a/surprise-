@@ -22,7 +22,7 @@ body{
     100%{background-position:0% 50%;}
 }
 
-/* Glowing blur circles */
+/* Glow Background Effect */
 body::before, body::after{
     content:"";
     position:absolute;
@@ -68,9 +68,8 @@ h1,h2,p{
 /* Floating Hearts */
 .heart{
     position:absolute;
-    color:#ff1493;
     animation: floatHeart 6s linear infinite;
-    opacity:0.6;
+    opacity:0.7;
     pointer-events:none;
 }
 
@@ -80,7 +79,7 @@ h1,h2,p{
         opacity:0;
     }
     50%{
-        opacity:0.8;
+        opacity:1;
     }
     100%{
         transform:translateY(-10vh) scale(1);
@@ -156,12 +155,6 @@ button:hover{
 .gif{
     width:200px;
     margin:15px;
-}
-
-.photos img{
-    width:150px;
-    margin:10px;
-    border-radius:12px;
 }
 
 .returnBtn{
@@ -252,8 +245,8 @@ setInterval(()=>{
     <div class="loading-bar"><div class="loading-fill"></div></div>
 </div>
 
-<!-- PAGE 8 -->
-<div class="page" id="page8" style="background:linear-gradient(to right,#ffe6f2,#ffd1ec);">
+<!-- PAGE 8 (FIXED – no background override now) -->
+<div class="page" id="page8">
     <img src="letters.gif" class="gif">
     <h1>7 Days of Love for Bubbu 💌</h1>
     <div class="letter-grid">
@@ -276,7 +269,6 @@ setInterval(()=>{
 </div>
 
 <script>
-
 let noClickCount = 0;
 
 function showPage(id){
@@ -332,41 +324,40 @@ function openLetter(num){
 
     if(num==1){
         letterTitle.innerText="🌹 Rose Day";
-        letterText.innerText="You are the most beautiful rose in my life. Your smile makes my world bloom every single day.";
+        letterText.innerText="You are the most beautiful rose in my life.";
         letterGif.src="rose.gif";
     }
     if(num==2){
         letterTitle.innerText="🍫 Chocolate Day";
-        letterText.innerText="You make my life sweeter than chocolate. Even your small texts make my whole day special.";
+        letterText.innerText="You make my life sweeter than chocolate.";
         letterGif.src="chocolate.gif";
     }
     if(num==3){
         letterTitle.innerText="🐻 Teddy Day";
-        letterText.innerText="I wish I could hug you tight forever. You are my comfort place and my peace.";
+        letterText.innerText="You are my comfort place and my peace.";
         letterGif.src="teddy.gif";
     }
     if(num==4){
         letterTitle.innerText="💍 Promise Day";
-        letterText.innerText="I promise to stay with you in every situation and never stop loving you.";
+        letterText.innerText="I promise to stay with you forever.";
         letterGif.src="promise.gif";
     }
     if(num==5){
         letterTitle.innerText="🤗 Hug Day";
-        letterText.innerText="Your hugs feel like home. In your arms, everything feels safe.";
+        letterText.innerText="Your hugs feel like home.";
         letterGif.src="hug.gif";
     }
     if(num==6){
         letterTitle.innerText="💋 Kiss Day";
-        letterText.innerText="Every kiss from you feels magical. You are my forever love.";
+        letterText.innerText="Every kiss from you feels magical.";
         letterGif.src="kiss.gif";
     }
     if(num==7){
         letterTitle.innerText="💖 Happy Valentine’s Day";
-        letterText.innerText="You are my today, tomorrow and forever. Thank you for choosing me.";
+        letterText.innerText="You are my today, tomorrow and forever.";
         letterGif.src="valentine.gif";
     }
 }
-
 </script>
 
 </body>
