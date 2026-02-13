@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For Bubbu 💖</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    text-align:center;
+    overflow:hidden;
+    background: linear-gradient(-45deg,#ffe6f2,#ffd1ec,#fff0f6,#ffcce6);
+    background-size:400% 400%;
+    animation: gradientMove 12s ease infinite;
+}
+
+/* Animated Gradient */
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+/* Glowing blur circles */
+body::before, body::after{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:rgba(255,20,147,0.25);
+    border-radius:50%;
+    filter:blur(120px);
+    animation: glowMove 10s infinite alternate;
+    z-index:-1;
+}
+
+body::after{
+    right:0;
+    bottom:0;
+    background:rgba(255,105,180,0.25);
+}
+
+@keyframes glowMove{
+    0%{transform:translate(-60px,-60px);}
+    100%{transform:translate(60px,60px);}
+}
+
+.page{
+    display:none;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:20px;
+    position:relative;
+}
+
+.active{
+    display:flex;
+}
+
+h1,h2,p{
+    color:#ff1493;
+    text-shadow:0 0 10px rgba(255,20,147,0.4);
+}
+
+/* Floating Hearts */
+.heart{
+    position:absolute;
+    color:#ff1493;
+    animation: floatHeart 6s linear infinite;
+    opacity:0.6;
+    pointer-events:none;
+}
+
+@keyframes floatHeart{
+    0%{
+        transform:translateY(100vh) scale(0.5);
+        opacity:0;
+    }
+    50%{
+        opacity:0.8;
+    }
+    100%{
+        transform:translateY(-10vh) scale(1);
+        opacity:0;
+    }
+}
+
+button{
+    padding:12px 30px;
+    margin:10px;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    background:linear-gradient(45deg,#ff4da6,#ff1493);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+    box-shadow:0 0 15px pink;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+.flexRow{
+    display:flex;
+    gap:20px;
+    align-items:center;
+    justify-content:center;
+}
+
+.loading-bar{
+    width:300px;
+    height:20px;
+    background:#ffd1ec;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.loading-fill{
+    height:100%;
+    width:0%;
+    background:#ff1493;
+    animation:load 3s forwards;
+}
+
+@keyframes load{
+    100%{width:100%;}
+}
+
+.letter-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.letter{
+    background:linear-gradient(45deg,#ff4da6,#ff1493);
+    color:white;
+    padding:25px;
+    border-radius:20px;
+    cursor:pointer;
+    animation:float 4s infinite ease-in-out;
+    box-shadow:0 0 20px rgba(255,20,147,0.5);
+}
+
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-15px);}
+    100%{transform:translateY(0px);}
+}
+
+.gif{
+    width:200px;
+    margin:15px;
+}
+
+.photos img{
+    width:150px;
+    margin:10px;
+    border-radius:12px;
+}
+
+.returnBtn{
+    background:linear-gradient(45deg,#ff1493,#ff4da6);
+    padding:14px 35px;
+    border-radius:30px;
+    font-size:18px;
+    box-shadow:0 0 15px pink;
+}
+
+#moveBtn, #moveBtn2{
+    position:absolute;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+/* Floating Hearts Generator */
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+},500);
+</script>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <img src="page1.gif" class="gif">
+    <h1>I have something for you 💕</h1>
+    <h2>Do you wanna see??</h2>
+    <div class="flexRow">
+        <button onclick="nextPage(2)">YES</button>
+        <button id="page1No" onclick="handleNo()">NO</button>
+    </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <img src="loading1.gif" class="gif">
+    <h1>Loading...</h1>
+    <div class="loading-bar"><div class="loading-fill"></div></div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <img src="cry.gif" class="gif">
+    <h1>Pliijj naa Bubbu 🥺💖</h1>
+    <button onclick="restartFlow()">Try Again</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <img src="happy.gif" class="gif">
+    <h1>Yeyeye Bubbu 😋💗</h1>
+    <div class="flexRow">
+        <button onclick="nextPage(5)">NEXT</button>
+        <button id="moveBtn">NOI NEXT</button>
+    </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+    <img src="loading2.gif" class="gif">
+    <h1>Loading Love...</h1>
+    <div class="loading-bar"><div class="loading-fill"></div></div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="page6">
+    <img src="proposal.gif" class="gif">
+    <h1>Will you be my Valentine? 💖</h1>
+    <div class="flexRow">
+        <button onclick="nextPage(7)">YES</button>
+        <button id="moveBtn2">NO</button>
+    </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="page7">
+    <img src="loading3.gif" class="gif">
+    <h1>Almost There...</h1>
+    <div class="loading-bar"><div class="loading-fill"></div></div>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="page8" style="background:linear-gradient(to right,#ffe6f2,#ffd1ec);">
+    <img src="letters.gif" class="gif">
+    <h1>7 Days of Love for Bubbu 💌</h1>
+    <div class="letter-grid">
+        <div class="letter" onclick="openLetter(1)">Rose Day</div>
+        <div class="letter" onclick="openLetter(2)">Chocolate Day</div>
+        <div class="letter" onclick="openLetter(3)">Teddy Day</div>
+        <div class="letter" onclick="openLetter(4)">Promise Day</div>
+        <div class="letter" onclick="openLetter(5)">Hug Day</div>
+        <div class="letter" onclick="openLetter(6)">Kiss Day</div>
+        <div class="letter" onclick="openLetter(7)">Valentine's Day</div>
+    </div>
+</div>
+
+<!-- LETTER PAGE -->
+<div class="page" id="letterPage">
+    <img id="letterGif" class="gif">
+    <h2 id="letterTitle"></h2>
+    <p id="letterText" style="max-width:600px;"></p>
+    <button class="returnBtn" onclick="nextPage(8)">Back to Love 💌</button>
+</div>
+
+<script>
+
+let noClickCount = 0;
+
+function showPage(id){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function nextPage(num){
+    showPage("page"+num);
+
+    if(num==2){
+        setTimeout(()=>showPage("page4"),3000);
+    }
+    if(num==5){
+        setTimeout(()=>showPage("page6"),3000);
+    }
+    if(num==7){
+        setTimeout(()=>showPage("page8"),3000);
+    }
+}
+
+function restartFlow(){
+    showPage("page1");
+}
+
+function handleNo(){
+    noClickCount++;
+
+    if(noClickCount==1){
+        showPage("page3");
+    }
+    else if(noClickCount==2){
+        let btn = document.getElementById("page1No");
+        btn.innerHTML="🎈 NO";
+        btn.style.transition="1s";
+        btn.style.transform="translateY(-200px)";
+        setTimeout(()=>{ showPage("page4"); },1200);
+    }
+}
+
+document.getElementById("moveBtn").onmouseover=function(){
+    this.style.top=Math.random()*80+"vh";
+    this.style.left=Math.random()*80+"vw";
+}
+
+document.getElementById("moveBtn2").onmouseover=function(){
+    this.style.top=Math.random()*80+"vh";
+    this.style.left=Math.random()*80+"vw";
+}
+
+function openLetter(num){
+    showPage("letterPage");
+
+    if(num==1){
+        letterTitle.innerText="🌹 Rose Day";
+        letterText.innerText="You are the most beautiful rose in my life. Your smile makes my world bloom every single day.";
+        letterGif.src="rose.gif";
+    }
+    if(num==2){
+        letterTitle.innerText="🍫 Chocolate Day";
+        letterText.innerText="You make my life sweeter than chocolate. Even your small texts make my whole day special.";
+        letterGif.src="chocolate.gif";
+    }
+    if(num==3){
+        letterTitle.innerText="🐻 Teddy Day";
+        letterText.innerText="I wish I could hug you tight forever. You are my comfort place and my peace.";
+        letterGif.src="teddy.gif";
+    }
+    if(num==4){
+        letterTitle.innerText="💍 Promise Day";
+        letterText.innerText="I promise to stay with you in every situation and never stop loving you.";
+        letterGif.src="promise.gif";
+    }
+    if(num==5){
+        letterTitle.innerText="🤗 Hug Day";
+        letterText.innerText="Your hugs feel like home. In your arms, everything feels safe.";
+        letterGif.src="hug.gif";
+    }
+    if(num==6){
+        letterTitle.innerText="💋 Kiss Day";
+        letterText.innerText="Every kiss from you feels magical. You are my forever love.";
+        letterGif.src="kiss.gif";
+    }
+    if(num==7){
+        letterTitle.innerText="💖 Happy Valentine’s Day";
+        letterText.innerText="You are my today, tomorrow and forever. Thank you for choosing me.";
+        letterGif.src="valentine.gif";
+    }
+}
+
+</script>
+
+</body>
+</html>
